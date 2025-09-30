@@ -1,0 +1,39 @@
+# System parameters (physical layout)
+system:
+  n_antennas_bs: 4      # Number of antennas at the BS
+  n_EUs: 4              # Number of users
+  n_antennas_EUs: 1     # Number of antennas at each user
+  Pu_dBm: 30
+  Pd_dBm: 30
+  noise_power_db_u: -100.0    # Noise power in dBm (uplink)
+  noise_power_db_d: -100.0    # Noise power in dBm (downlink)
+  SNR_db: 20
+  scale_factor_db: 100.0
+  pilot_length: 8        # Number of pilot symbols
+  phase_shifts: "random"   # How to generate IRS phase shifts ("random", "DFT", etc.) - UNUSED
+  ris:
+    n_blocks: 4
+    n_elements_per_block: 4 # i.e., m
+
+model:
+  n_layers: 2
+  hidden_dim: 256
+  radius: 0
+
+# Training parameters
+train:
+  lr: 0.001
+  max_epochs: 200
+  batch_size: 200 # n_samples_train
+  n_samples_test: 1000
+  iter_per_epoch: 10
+  initial_run: True        # If false, load from checkpoint
+  save_model: False         # Whether to save the best model
+  input_flag: True         # Whether to include user location info in input
+  early_stop_patience: 10
+
+# Data paths
+paths:
+  model_path: "param_model/model.pth"
+  dataset_path: "data/test_data.npz"
+
